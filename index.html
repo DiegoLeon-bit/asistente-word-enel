@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <title>Asistente Enel para Word</title>
-  <link rel="stylesheet" href="taskpane.css">
+  <link rel="stylesheet" href="taskpane.css?v=0.2">
   <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
-  <script defer src="taskpane.js"></script>
+  <script defer src="taskpane.js?v=0.2"></script>
 </head>
 <body>
   <main class="app-shell">
@@ -20,14 +20,14 @@
       </div>
     </header>
 
-    <section class="notice" id="officeNotice" role="status">
+    <section class="notice" id="officeNotice" role="status" aria-live="polite">
       Conectando con Word…
     </section>
 
     <section class="form-section" aria-labelledby="dataHeading">
       <div class="section-heading">
         <h2 id="dataHeading">Datos del caso</h2>
-        <span class="tag">Versión inicial</span>
+        <span class="tag">Versión 0.2</span>
       </div>
 
       <label for="clientName">Nombre del cliente</label>
@@ -41,23 +41,39 @@
 
       <label for="finalResponse">Respuesta de fondo</label>
       <textarea id="finalResponse" rows="7" placeholder="Escribe o pega aquí la respuesta de fondo…"></textarea>
+    </section>
 
+    <section class="custom-section" aria-labelledby="customHeading">
+      <div class="section-heading custom-heading">
+        <div>
+          <h2 id="customHeading">Etiquetas personalizadas</h2>
+          <p class="section-help">Crea los campos que necesites. La configuración se guarda en este navegador; los valores del caso no se guardan.</p>
+        </div>
+        <button id="addFieldButton" class="button button-secondary add-field-button" type="button">+ Agregar</button>
+      </div>
+
+      <div id="customFields" class="custom-fields"></div>
+      <p id="customEmpty" class="custom-empty">Todavía no tienes campos personalizados. Puedes agregarlos aquí o crearlos a partir de las etiquetas que encuentre Word.</p>
+    </section>
+
+    <section class="actions-section" aria-label="Acciones del documento">
       <div class="actions">
-        <button id="checkButton" class="button button-secondary" type="button">Revisar etiquetas</button>
+        <button id="checkButton" class="button button-secondary" type="button" disabled>Revisar etiquetas</button>
         <button id="applyButton" class="button button-primary" type="button" disabled>Aplicar al documento</button>
       </div>
-      <button id="clearButton" class="button-link" type="button">Limpiar formulario</button>
+      <button id="clearButton" class="button-link" type="button">Limpiar valores del formulario</button>
     </section>
 
     <section class="results-section" aria-labelledby="resultsHeading">
       <h2 id="resultsHeading">Etiquetas encontradas</h2>
       <p id="resultsText" class="results-empty">Pulsa “Revisar etiquetas” para buscar los marcadores en el documento abierto.</p>
       <ul id="resultsList" class="results-list"></ul>
+      <button id="addDetectedButton" class="button button-secondary detected-button" type="button" hidden>Crear campos para etiquetas nuevas</button>
     </section>
 
     <footer>
-      <p>Los datos se utilizan para actualizar el documento abierto. Esta versión no envía los datos del caso a un servidor.</p>
-      <p class="footer-version">Asistente Enel · Prueba 0.1</p>
+      <p>Los datos del caso se procesan en el complemento y se insertan en el documento abierto. No se envían a un servidor. La configuración de campos personalizados se guarda localmente en este navegador.</p>
+      <p class="footer-version">Asistente Enel · Versión 0.2</p>
     </footer>
   </main>
 </body>

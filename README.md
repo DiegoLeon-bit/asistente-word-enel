@@ -1,54 +1,53 @@
-# Asistente Enel para Word — versión inicial 0.1
+# Asistente Enel para Word — versión 0.2
 
-Complemento de prueba (Office Add-in) para Word en la web. Muestra un panel con cuatro campos y reemplaza en el documento los marcadores correspondientes:
+Complemento de prueba (Office Add-in) para Word en la web. Permite completar los cuatro campos básicos y administrar campos adicionales desde el propio panel.
 
-- `{{NOMBRE_CLIENTE}}`
-- `{{NUMERO_CASO}}`
-- `{{SUMINISTRO}}`
-- `{{RESPUESTA_DE_FONDO}}`
+## Qué incluye esta versión
 
-## Importante antes de publicarlo
+- Campos básicos: `{{NOMBRE_CLIENTE}}`, `{{NUMERO_CASO}}`, `{{SUMINISTRO}}` y `{{RESPUESTA_DE_FONDO}}`.
+- Botón **+ Agregar** para crear campos personalizados sin editar JavaScript.
+- Botón **Crear campos para etiquetas nuevas**, que aparece después de revisar el documento y permite crear automáticamente un campo por cada etiqueta detectada que aún no esté configurada.
+- Configuración de etiquetas personalizadas guardada localmente en el navegador. Los valores que escribas para cada caso no se guardan al cerrar el panel.
+- Los campos vacíos se omiten y no borran sus marcadores.
 
-Este paquete contiene código de prueba. No contiene datos reales de clientes. No subas al repositorio documentos, respuestas, nombres, números de suministro ni información interna de Enel.
+## Actualizar la versión que ya está publicada en GitHub Pages
 
-GitHub Pages publica el sitio en Internet. El código del complemento será visible públicamente. El formulario está diseñado para procesar los valores en el panel y escribirlos en el documento mediante Office.js; esta versión no envía los datos del caso a un servidor.
+1. Descarga y descomprime este paquete.
+2. Abre tu repositorio `asistente-word-enel` en GitHub.
+3. Entra en la carpeta raíz del repositorio (donde están `index.html`, `taskpane.js` y `taskpane.css`).
+4. Selecciona **Add file → Upload files**.
+5. Sube los archivos actualizados, reemplazando los anteriores: `index.html`, `taskpane.js`, `taskpane.css` y `README.md`. Puedes conservar la carpeta `assets` y el `manifest-template.xml` que ya tienes.
+6. Pulsa **Commit changes**.
+7. Cuando GitHub Pages termine de publicar, cierra el panel Asistente Enel en Word y vuelve a abrirlo. Si ves la versión anterior, actualiza la página de Word o cierra y vuelve a abrir el documento.
 
-## Publicar en GitHub Pages (sin Node.js)
+No necesitas volver a cargar el manifiesto en Word si conservas la misma dirección de GitHub Pages.
 
-1. En GitHub crea un repositorio llamado exactamente `asistente-word-enel`.
-2. Para GitHub Free, configura el repositorio como **Public** (GitHub Pages requiere un repositorio público en el plan Free).
-3. Descomprime el paquete en tu computador.
-4. En el repositorio, selecciona **Add file → Upload files** y carga el contenido de esta carpeta, incluida la carpeta `assets` y todos los archivos. No es necesario cargar el ZIP.
-5. Entra a **Settings → Pages**.
-6. En **Build and deployment**, selecciona **Deploy from a branch**.
-7. Elige la rama `main` y la carpeta `/(root)`, y pulsa **Save**.
-8. Espera a que GitHub Pages publique el sitio. La dirección será:
-   `https://TU-USUARIO.github.io/asistente-word-enel/`
+## Cómo crear campos desde el mismo panel
 
-## Preparar el manifiesto para tu cuenta
+### Método automático
+1. En Word escribe la etiqueta, por ejemplo `{{PERIODO_FACTURADO}}`.
+2. En el panel pulsa **Revisar etiquetas**.
+3. Pulsa **Crear campos para etiquetas nuevas**.
+4. El panel agregará los campos detectados que aún no estén configurados.
+5. Escribe el contenido y pulsa **Aplicar al documento**.
 
-1. Abre `manifest-template.xml` con el Bloc de notas o VS Code.
-2. Reemplaza todas las apariciones de `TU-USUARIO` por tu nombre de usuario exacto de GitHub.
-3. Guarda una copia con el nombre `manifest.xml`.
-4. Comprueba en el navegador que se abra la página `https://TU-USUARIO.github.io/asistente-word-enel/`.
-5. En Word para la web abre **Inicio → Complementos → Más complementos / Mis complementos → Cargar mi complemento**.
-6. Examina y selecciona `manifest.xml`.
+### Método manual
+1. Pulsa **+ Agregar**.
+2. Escribe el nombre del campo, por ejemplo `Periodo facturado`.
+3. Escribe la etiqueta exacta, por ejemplo `{{PERIODO_FACTURADO}}`.
+4. Escribe el contenido y pulsa **Aplicar al documento**.
 
-Si Word rechaza el manifiesto o muestra un mensaje de política de la organización, no intentes saltarte el control: será necesario solicitar al administrador que permita la carga de complementos personalizados o que lo despliegue mediante el centro de administración de Microsoft 365.
+Las etiquetas personalizadas deben usar el formato `{{NOMBRE_CAMPO}}`, con letras mayúsculas, números y guion bajo. El texto de la etiqueta debe coincidir exactamente con el que está en Word.
 
-## Probarlo
+## Privacidad y limitaciones
 
-1. Abre un documento de Word nuevo.
-2. Copia el contenido de `plantilla-de-prueba.txt` en el documento. Conserva los marcadores tal como están escritos.
-3. Abre el complemento **Asistente Enel para Word** desde Complementos / Mis complementos.
-4. Diligencia uno o varios campos y pulsa **Revisar etiquetas**.
-5. Pulsa **Aplicar al documento**. Los campos vacíos se omiten; no borran sus marcadores.
-
-## Notas técnicas
-
+- El contenido del documento y los valores escritos en el formulario no se envían a un servidor mediante este código.
+- Los nombres y las etiquetas de los campos personalizados se guardan en el almacenamiento local del navegador/WebView de Word. Esa configuración no se sincroniza automáticamente con otros computadores o perfiles.
+- Los valores de los casos no se guardan en el almacenamiento local.
+- La revisión busca marcadores en el texto principal del documento. Encabezados, pies de página, cuadros de texto y otros elementos no están incluidos en esta versión de prueba.
 - No necesita Node.js, npm ni un servidor backend.
-- Usa Office.js desde el CDN oficial de Microsoft.
-- Requiere conexión a Internet para cargar la página de GitHub Pages y la biblioteca Office.js.
-- Solicita permiso `ReadWriteDocument` porque debe buscar y reemplazar texto en el documento abierto.
-- La primera versión busca los marcadores en el texto principal del documento. La revisión visual de encabezados, pies de página, cuadros de texto y otros elementos no está incluida en esta prueba.
-- El XML es una plantilla: `TU-USUARIO` debe reemplazarse por el usuario real antes de cargarlo en Word.
+- Usa Office.js desde el CDN oficial de Microsoft y requiere conexión a Internet para cargar el complemento.
+
+## Publicación inicial y manifiesto
+
+Para la primera publicación, sigue las instrucciones de la versión anterior del proyecto para configurar GitHub Pages y adaptar `manifest-template.xml` a tu usuario de GitHub. Esta versión no cambia la dirección del complemento.

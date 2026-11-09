@@ -12,6 +12,7 @@
   font-family: "Segoe UI", Arial, sans-serif;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 body { margin: 0; background: #fff; color: var(--ink); font-size: 14px; }
 .app-shell { max-width: 620px; margin: 0 auto; padding: 18px 18px 14px; }
 .app-header { display: flex; gap: 12px; align-items: center; margin-bottom: 18px; }
@@ -19,11 +20,11 @@ body { margin: 0; background: #fff; color: var(--ink); font-size: 14px; }
 .eyebrow { margin: 0 0 3px; color: var(--blue); font-size: 10px; font-weight: 700; letter-spacing: .11em; }
 h1 { margin: 0; font-size: 22px; line-height: 1.2; }
 .subtitle { margin: 4px 0 0; color: var(--muted); line-height: 1.4; }
-.notice { margin-bottom: 18px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--muted); line-height: 1.4; }
+.notice { margin-bottom: 18px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--muted); line-height: 1.4; overflow-wrap: anywhere; }
 .notice.success { border-color: #b9dfc8; background: #edf8f1; color: #155d36; }
 .notice.warning { border-color: #f1d58a; background: var(--amber-bg); color: var(--amber-ink); }
 .notice.error { border-color: #e7b9b9; background: #fff0f0; color: #922d2d; }
-.form-section, .results-section { padding: 16px; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 14px; }
+.form-section, .custom-section, .results-section { padding: 16px; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 14px; }
 .section-heading { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 14px; }
 h2 { margin: 0 0 12px; font-size: 16px; }
 .section-heading h2 { margin: 0; }
@@ -31,8 +32,18 @@ h2 { margin: 0 0 12px; font-size: 16px; }
 label { display: block; margin: 12px 0 5px; font-size: 12px; font-weight: 650; }
 input, textarea { display: block; width: 100%; padding: 10px 11px; border: 1px solid #c8ced6; border-radius: 7px; background: white; color: var(--ink); font: inherit; outline: none; }
 input:focus, textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 2px rgba(23,105,170,.12); }
-textarea { resize: vertical; min-height: 110px; line-height: 1.45; }
-.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 16px; }
+textarea { resize: vertical; min-height: 84px; line-height: 1.45; }
+.section-help { margin: 5px 0 0; color: var(--muted); font-size: 12px; line-height: 1.4; }
+.custom-heading { align-items: flex-start; }
+.add-field-button { flex: 0 0 auto; min-height: 34px; padding: 7px 10px; }
+.custom-fields { display: grid; gap: 11px; }
+.custom-field-card { padding: 12px; border: 1px solid #e0e5eb; border-radius: 9px; background: #fbfcfd; }
+.custom-field-heading { display: flex; justify-content: space-between; align-items: center; gap: 10px; color: #33485d; font-size: 12px; }
+.remove-field-button { padding: 3px 0; border: 0; background: transparent; color: #9a3535; font: inherit; font-size: 12px; text-decoration: underline; cursor: pointer; }
+.field-hint { margin: 7px 0 0; color: var(--muted); font-size: 11px; line-height: 1.4; }
+.custom-empty { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+.actions-section { margin: 0 0 14px; }
+.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
 .button { min-height: 40px; border: 1px solid transparent; border-radius: 7px; padding: 9px 12px; font: inherit; font-weight: 650; cursor: pointer; }
 .button:disabled { cursor: not-allowed; opacity: .48; }
 .button-primary { background: var(--blue); color: white; }
@@ -45,7 +56,12 @@ textarea { resize: vertical; min-height: 110px; line-height: 1.45; }
 .results-list li { display: flex; justify-content: space-between; gap: 10px; padding: 8px 10px; border-radius: 7px; background: var(--panel); }
 .result-token { font-family: Consolas, monospace; color: #33485d; overflow-wrap: anywhere; }
 .result-count { color: var(--green); font-weight: 700; white-space: nowrap; }
+.detected-button { width: 100%; margin-top: 12px; }
 footer { padding: 2px 3px; color: var(--muted); font-size: 11px; line-height: 1.45; }
 footer p { margin: 5px 0; }
 .footer-version { color: #89919a; }
-@media (max-width: 360px) { .actions { grid-template-columns: 1fr; } .app-shell { padding: 12px; } }
+@media (max-width: 360px) {
+  .actions { grid-template-columns: 1fr; }
+  .app-shell { padding: 12px; }
+  .section-heading { align-items: flex-start; }
+}
