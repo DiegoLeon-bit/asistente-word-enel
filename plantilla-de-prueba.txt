@@ -1,0 +1,8 @@
+Respetado(a) señor(a) {{NOMBRE_CLIENTE}}
+
+En atención al caso {{NUMERO_CASO}}, correspondiente al suministro {{SUMINISTRO}}, nos permitimos informar lo siguiente:
+
+{{RESPUESTA_DE_FONDO}}
+
+Cordialmente,
+ENEL COLOMBIA S.A. E.S.P.

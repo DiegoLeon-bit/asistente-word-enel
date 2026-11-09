@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <title>Asistente Enel para Word</title>
+  <link rel="stylesheet" href="taskpane.css">
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <script defer src="taskpane.js"></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="app-header">
+      <div class="brand-mark" aria-hidden="true">E</div>
+      <div>
+        <p class="eyebrow">COMPLEMENTO DE WORD</p>
+        <h1>Asistente Enel</h1>
+        <p class="subtitle">Completa los campos de tu plantilla directamente en el documento.</p>
+      </div>
+    </header>
+
+    <section class="notice" id="officeNotice" role="status">
+      Conectando con Word…
+    </section>
+
+    <section class="form-section" aria-labelledby="dataHeading">
+      <div class="section-heading">
+        <h2 id="dataHeading">Datos del caso</h2>
+        <span class="tag">Versión inicial</span>
+      </div>
+
+      <label for="clientName">Nombre del cliente</label>
+      <input id="clientName" type="text" autocomplete="off" placeholder="Ej. Juan Carlos Pérez">
+
+      <label for="caseNumber">Número de caso</label>
+      <input id="caseNumber" type="text" autocomplete="off" placeholder="Ej. 1075988296">
+
+      <label for="supplyNumber">Número de suministro</label>
+      <input id="supplyNumber" type="text" autocomplete="off" placeholder="Número de suministro">
+
+      <label for="finalResponse">Respuesta de fondo</label>
+      <textarea id="finalResponse" rows="7" placeholder="Escribe o pega aquí la respuesta de fondo…"></textarea>
+
+      <div class="actions">
+        <button id="checkButton" class="button button-secondary" type="button">Revisar etiquetas</button>
+        <button id="applyButton" class="button button-primary" type="button" disabled>Aplicar al documento</button>
+      </div>
+      <button id="clearButton" class="button-link" type="button">Limpiar formulario</button>
+    </section>
+
+    <section class="results-section" aria-labelledby="resultsHeading">
+      <h2 id="resultsHeading">Etiquetas encontradas</h2>
+      <p id="resultsText" class="results-empty">Pulsa “Revisar etiquetas” para buscar los marcadores en el documento abierto.</p>
+      <ul id="resultsList" class="results-list"></ul>
+    </section>
+
+    <footer>
+      <p>Los datos se utilizan para actualizar el documento abierto. Esta versión no envía los datos del caso a un servidor.</p>
+      <p class="footer-version">Asistente Enel · Prueba 0.1</p>
+    </footer>
+  </main>
+</body>
+</html>

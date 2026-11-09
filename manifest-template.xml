@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:type="TaskPaneApp">
+  <Id>32df5d4a-73a6-4b4a-9c60-0d2a2c4f6e31</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Asistente personal</ProviderName>
+  <DefaultLocale>es-CO</DefaultLocale>
+  <DisplayName DefaultValue="Asistente Enel para Word" />
+  <Description DefaultValue="Formulario de prueba para completar marcadores en un documento de Word." />
+  <IconUrl DefaultValue="https://TU-USUARIO.github.io/asistente-word-enel/assets/icon-32.png" />
+  <HighResolutionIconUrl DefaultValue="https://TU-USUARIO.github.io/asistente-word-enel/assets/icon-80.png" />
+  <SupportUrl DefaultValue="https://github.com/TU-USUARIO/asistente-word-enel" />
+  <Hosts>
+    <Host Name="Document" />
+  </Hosts>
+  <Requirements>
+    <Sets DefaultMinVersion="1.1">
+      <Set Name="WordApi" MinVersion="1.1" />
+    </Sets>
+  </Requirements>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://TU-USUARIO.github.io/asistente-word-enel/index.html" />
+  </DefaultSettings>
+  <Permissions>ReadWriteDocument</Permissions>
+</OfficeApp>
